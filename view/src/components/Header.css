@@ -1,0 +1,31 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: right;
+    border-bottom: 1px solid #f9f9f9;
+    margin: 0;
+    background-color:#b3e5fc;
+}
+
+.title {
+    display: flex;
+    align-items: center;
+    font-family: 'Permanent Marker';
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.header__logo {
+    height: 40px;
+    object-fit: contain;
+    margin-right: 10px;
+}
+
+.header__icon {
+    padding: 0px;
+}
+
+* {
+    margin: 0;
+  }
+  

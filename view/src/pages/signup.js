@@ -49,6 +49,11 @@ class signup extends Component {
 			email: '',
 			password: '',
 			confirmPassword: '',
+			entertaining: '',
+			shopping: '',
+			pets: '',
+			urgent: '',
+			rides: '',
 			errors: [],
 			loading: false
 		};
@@ -66,11 +71,20 @@ class signup extends Component {
 		this.setState({
 			[event.target.name]: event.target.value
 		});
+		console.log("handleChange");
+		console.log(event.target.name);
+		console.log(event.target.value);
 	};
 
 	handleSubmit = (event) => {
+		console.log("handleSubmit");
 		event.preventDefault();
 		this.setState({ loading: true });
+		console.log("shopping:")
+		console.log(this.state.shopping);
+		console.log("entertaining:")
+		console.log(this.state.entertaining);
+
 		const newUserData = {
 			firstName: this.state.firstName,
 			lastName: this.state.lastName,
@@ -79,8 +93,15 @@ class signup extends Component {
 			username: this.state.username,
 			email: this.state.email,
 			password: this.state.password,
-			confirmPassword: this.state.confirmPassword
+			confirmPassword: this.state.confirmPassword,
+			entertaining: this.state.entertaining,
+			pets: this.state.pets,
+			rides: this.state.rides,
+			shopping: this.state.shopping,
+			urgent: this.state.urgent
 		};
+		console.log("newUserData");
+		console.log(newUserData);
 		axios
 			.post('/signup', newUserData)
 			.then((response) => {
@@ -88,7 +109,7 @@ class signup extends Component {
 				this.setState({ 
 					loading: false,
 				});	
-				this.props.history.push('/');
+				this.props.history.push('/home');
 			})
 			.catch((error) => {
 				this.setState({
@@ -202,6 +223,80 @@ class signup extends Component {
 									onChange={this.handleChange}
 								/>
 							</Grid>
+							<Grid item xs={12}>
+								<TextField
+									variant="outlined"
+									required
+									fullWidth
+									id="urgent"
+									label="Urgent"
+									name="urgent"
+									autoComplete="urgent"
+									helperText={errors.shopping}
+									error={errors.shopping ? true : false}
+									onChange={this.handleChange}
+								/>
+							</Grid>
+							<Grid item xs={12}>
+								<TextField
+									variant="outlined"
+									required
+									fullWidth
+									id="shopping"
+									label="Shopping"
+									name="shopping"
+									autoComplete="urgent"
+									helperText={errors.urgent}
+									error={errors.urgent ? true : false}
+									onChange={this.handleChange}
+								/>
+							</Grid>
+
+							<Grid item xs={12}>
+								<TextField
+									variant="outlined"
+									required
+									fullWidth
+									id="entertaining"
+									label="Entertaining"
+									name="entertaining"
+									autoComplete="entertaining"
+									helperText={errors.entertaining}
+									error={errors.entertaining ? true : false}
+									onChange={this.handleChange}
+								/>
+							</Grid>
+
+							<Grid item xs={12}>
+								<TextField
+									variant="outlined"
+									required
+									fullWidth
+									id="pets"
+									label="Pets"
+									name="pets"
+									autoComplete="pets"
+									helperText={errors.pets}
+									error={errors.pets ? true : false}
+									onChange={this.handleChange}
+								/>
+							</Grid>
+
+							<Grid item xs={12}>
+								<TextField
+									variant="outlined"
+									required
+									fullWidth
+									id="rides"
+									label="Rides"
+									name="rides"
+									autoComplete="rides"
+									helperText={errors.rides}
+									error={errors.rides ? true : false}
+									onChange={this.handleChange}
+								/>
+							</Grid>
+								
 
 							<Grid item xs={12}>
 								<TextField
@@ -246,7 +341,12 @@ class signup extends Component {
                                 !this.state.lastName ||
                                 !this.state.country || 
                                 !this.state.username || 
-                                !this.state.phoneNumber}
+								!this.state.phoneNumber ||
+								!this.state.shopping ||
+								!this.state.entertaining ||
+								!this.state.pets ||
+								!this.state.rides
+								 }
 						>
 							Sign Up
 							{loading && <CircularProgress size={30} className={classes.progess} />}

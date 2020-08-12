@@ -1,36 +1,53 @@
-import React, { Component } from 'react';
-import Header from '../components/header';
+import React from 'react';
+import Header from '../components/Header';
+import Content from './Content';
+import UserCard from './UserCard';
+import Footer from '../components/Footer';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+//import './App.css';
+//import Link from '@material-ui/core/Link';
 
-import Link from '@material-ui/core/Link';
-
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-
-import Grid from '@material-ui/core/Grid';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Typography from '@material-ui/core/Typography';
-import withStyles from '@material-ui/core/styles/withStyles';
-import Container from '@material-ui/core/Container';
-import CircularProgress from '@material-ui/core/CircularProgress';
-
-import axios from 'axios';
-
-
-function landing() {
+function Landing() {
   return (
-    <div>
-        <Header></Header>
-        <h1>Landing Page!</h1>
-        <Link href="questionnaire" variant="body2">
-									{"I need help!"}
-								</Link>
-        <Link href="login" variant="body2">
-									{"I want to help!"}
-								</Link>
+    <div className="Landing">
+      {/* header */}
+      <Header /> {/* common for all the pages */}
+
+      <Router>
+        <Switch>
+          <Route path="/chat">
+            <h1>Chat Page</h1>
+          </Route>
+          <Route path="/questionnaire">
+            <h1>Questionnaire</h1>
+          </Route>
+          <Route path="/user-details">
+            <h1>User Details</h1>
+            <UserCard />
+          </Route>
+          <Route path="/"> {/* default route has to be at the end */}
+            <Content />
+          </Route>
+        </Switch>
+        {/* i need help */}
+        {/* i want to help */}
+        {/* what we do */}
+        {/* footer */}
+
+        {/* chat screen */}
+        {/* individual chat screen */}
+
+        {/* questionnaire */}
+
+        {/* list of volunteers */}
+
+        {/* volunteer profile */}
+
+        {/* user details */}
+      </Router>
+      <Footer />
     </div>
-    
   );
 }
-export default landing;
+
+export default Landing;
