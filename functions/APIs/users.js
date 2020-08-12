@@ -41,9 +41,16 @@ exports.signUpUser = (request, response) => {
         email: request.body.email,
         phoneNumber: request.body.phoneNumber,
         country: request.body.country,
+        city: request.body.city,
+        bio: request.body.bio,
 		password: request.body.password,
 		confirmPassword: request.body.confirmPassword,
-		username: request.body.username
+        username: request.body.username,
+        urgent: request.body.urgent,
+        entertaining: request.body.entertaining,
+        shopping: request.body.shopping,
+        pets: request.body.pets,
+        rides: request.body.rides
     };
 
     const { valid, errors } = validateSignUpData(newUser);
@@ -78,7 +85,14 @@ exports.signUpUser = (request, response) => {
                 username: newUser.username,
                 phoneNumber: newUser.phoneNumber,
                 country: newUser.country,
+                bio: newUser.bio,
+                city: newUser.city,
                 email: newUser.email,
+                urgent: newUser.urgent,
+                shopping: newUser.shopping,
+                entertaining: newUser.entertaining,
+                rides: newUser.rides,
+                pets: newUser.pets,
                 createdAt: new Date().toISOString(),
                 userId
             };
@@ -112,24 +126,14 @@ exports.getAllUsers = (request, response) => {
                     email: doc.data().email,
                     phoneNumber: doc.data().phoneNumber,
                     country: doc.data().country,
-                    /*
-                    firstName: request.body.firstName,
-        lastName: request.body.lastName,
-        email: request.body.email,
-        phoneNumber: request.body.phoneNumber,
-        country: request.body.country,
-		password: request.body.password,
-		confirmPassword: request.body.confirmPassword,
-		username: request.body.username
-
-                    country: doc.data().country,
-                    city: doc.data().city,
-                    phone: doc.data().phone,
                     bio: doc.data().bio,
+                    city: doc.data().city,
                     urgent: doc.data().urgent,
-                    groceries: doc.data().groceries,
-                    pet: doc.data().pet,
-                    ride: doc.data().ride, */
+                    shopping: doc.data().shopping,
+                    entertaining: doc.data().entertaining,
+                    pets: doc.data().pets,
+                    rides: doc.data().rides,
+                    
 				});
 			});
 			return response.json(volunteers);
